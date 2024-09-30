@@ -1,6 +1,3 @@
-#### Fonctions secondaires
-
-
 # imports
 from plotly.graph_objects import Scatter, Figure
 
@@ -20,7 +17,8 @@ def syr_plot(lsyr):
     fig.show()
     # fig.write_html('fig.html', include_plotlyjs='cdn')
     return None
-#######################
+
+
 
 def syracuse_l(n):
     """retourne la suite de Syracuse de source n
@@ -31,12 +29,17 @@ def syracuse_l(n):
     Returns:
         list: la suite de Syracuse de source n
     """
+    L = [n]  # Commence par n
+    while n != 1:  # Continue jusqu'à ce que n atteigne 1
+        if n % 2 == 0:  # n est pair
+            n = n // 2
+        else:  # n est impair
+            n = 3 * n + 1
+        L.append(n)  # Ajouter la nouvelle valeur à la liste
+    return L
+                 
 
-    # votre code ici 
-    l = [ ]
-    return l
-
-def temps_de_vol(l):
+def temps_de_vol(L):
     """Retourne le temps de vol d'une suite de Syracuse
 
     Args:
@@ -45,13 +48,16 @@ def temps_de_vol(l):
     Returns:
         int: le temps de vol
     """
-    
-    # votre code ici
+    if not L:  # Vérifie si la liste est vide
+        return 0
+    i = 0
+    while L[i] != 1 and i < len(L):
+        i += 1
+    return i+1
+            
 
-    n = 0
-    return n
 
-def temps_de_vol_en_altitude(l):
+def temps_de_vol_en_altitude(L):
     """Retourne le temps de vol en altitude d'une suite de Syracuse
 
     Args:
@@ -60,14 +66,16 @@ def temps_de_vol_en_altitude(l):
     Returns:
         int: le temps de vol en altitude
     """
+    if not L:  # Vérifie si la liste est vide
+        return 0
+    i = 0
+    while  i < len(L)-1 and L[i+1] > L[0]:
+        i += 1
+    return i
 
-    # votre code ici
-
-    n = 0
-    return n
 
 
-def altitude_maximale(l):
+def altitude_maximale(L):
     """retourne l'altitude maximale d'une suite de Syracuse
 
     Args:
@@ -76,15 +84,12 @@ def altitude_maximale(l):
     Returns:
         int: l'altitude maximale
     """
-    
-    # votre code ici
-    
-    n = 0
-    return n
+    if not L:  # Vérifie si la liste est vide
+        return None
+    return max(L)
 
-
-#### Fonction principale
-
+print(syracuse_l(6))
+print(altitude_maximale(syracuse_l(6)))
 
 def main():
 
